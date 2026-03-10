@@ -1,18 +1,26 @@
 import { StatusBar } from "expo-status-bar";
-import { useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { useEffect, useState } from "react";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import { getLaunches } from "../services/api";
+import ObjectCard from "../components/ObjectCard";
+import { Launch } from "../types/Launch";
 
-export default function Index() {
+export default function HomeTab() {
+  const [launches, setLaunches] = useState<Launch[]>([]);
+
   useEffect(() => {
-    console.log("useEffekt funkar!");
-    getLaunches();
+    getLaunches().then(setLaunches);
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>RocketPocket</Text>
-      <StatusBar style="auto" />
+    <View style={{ flex: 1 }}>
+      <Text>Upcoming Launches</Text>
+
+      <FlatList
+        data={launches}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <ObjectCard item={item} />}
+      />
     </View>
   );
 }
