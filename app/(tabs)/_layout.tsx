@@ -35,7 +35,11 @@ export default function TabsLayout() {
         options={{
           title: "Expeditions",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="map-search-outline" size={size} color={color} />
+            <MaterialCommunityIcons
+              name="map-search-outline"
+              size={size}
+              color={color}
+            />
           ),
         }}
       />
