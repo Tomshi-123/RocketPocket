@@ -10,12 +10,14 @@ export type LaunchDetail = {
   name: string;
   net: string;
   image: string | null;
-
-  missionName: string | null;
-  missionType: string | null;
-  missionDescription: string | null;
-  missionImage: string | null;
-
-  orbitName: string | null;
-  orbitAbbrev: string | null;
+  mission?: {
+    name?: string | null;
+    type?: string | null;
+    description?: string | null;
+    image?: string | null;
+    orbit?: {
+      name?: string | null;
+      abbrev?: string | null;
+    } | null;
+  } | null;
 };
