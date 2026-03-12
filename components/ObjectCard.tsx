@@ -1,4 +1,5 @@
-import { Image, Text, View } from "react-native";
+import { Link } from "expo-router";
+import { Image, Pressable, Text, View } from "react-native";
 import { Launch } from "../types/Launch";
 
 type ObjectCardProps = {
@@ -7,14 +8,24 @@ type ObjectCardProps = {
 
 export default function ObjectCard({ item }: ObjectCardProps) {
   return (
-    <View>
-      {item.image ? (
-        <Image source={{ uri: item.image }} style={{ width: "100%", height: 160 }} />
-      ) : (
-        <Text>Ingen bild</Text>
-      )}
-      <Text>{item.name}</Text>
-      <Text>{item.net}</Text>
-    </View>
+    <Link
+      href={{ pathname: "/launchdetail/[id]", params: { id: String(item.id) } }}
+      asChild
+    >
+      <Pressable>
+        <View>
+          {item.image ? (
+            <Image
+              source={{ uri: item.image }}
+              style={{ width: "100%", height: 160 }}
+            />
+          ) : (
+            <Text>Ingen bild</Text>
+          )}
+          <Text>{item.name}</Text>
+          <Text>{item.net}</Text>
+        </View>
+      </Pressable>
+    </Link>
   );
 }

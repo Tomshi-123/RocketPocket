@@ -17,6 +17,10 @@ export default function RootLayout() {
     <PaperProvider theme={theme}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="launchdetail/[id]"
+          options={{ title: "Launch Detail" }}
+        />
       </Stack>
     </PaperProvider>
   );
