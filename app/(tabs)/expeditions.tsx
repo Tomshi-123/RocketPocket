@@ -4,7 +4,11 @@ import { getExpeditions } from "../../services/api";
 import { Expedition } from "../../types/Expeditions";
 
 function getExpeditionImage(item: Expedition): string | undefined {
-  return item.mission_patches?.[0]?.image_url ?? item.spacestation?.image?.thumbnail_url ?? undefined;
+  return (
+    item.mission_patches?.[0]?.image_url ??
+    item.spacestation?.image?.thumbnail_url ??
+    undefined
+  );
 }
 
 export default function ExpeditionsTab() {
@@ -15,7 +19,9 @@ export default function ExpeditionsTab() {
   }, []);
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#f8fafc", paddingHorizontal: 14 }}>
+    <View
+      style={{ flex: 1, backgroundColor: "#f8fafc", paddingHorizontal: 14 }}
+    >
       <Text
         style={{
           textAlign: "center",
@@ -45,18 +51,26 @@ export default function ExpeditionsTab() {
             {getExpeditionImage(item) ? (
               <Image
                 source={{ uri: getExpeditionImage(item) }}
-                style={{ width: "100%", height: 120, backgroundColor: "#f1f5f9" }}
+                style={{
+                  width: "100%",
+                  height: 120,
+                  backgroundColor: "#f1f5f9",
+                }}
               />
             ) : null}
             <View style={{ padding: 12 }}>
-              <Text style={{ fontSize: 16, fontWeight: "700", color: "#0f172a" }}>
+              <Text
+                style={{ fontSize: 16, fontWeight: "700", color: "#0f172a" }}
+              >
                 {item.name}
               </Text>
               <Text style={{ marginTop: 4, color: "#475569" }}>
                 {item.start ? item.start.split("T")[0] : "Okänt startdatum"}
               </Text>
               {item.spacestation?.name ? (
-                <Text style={{ marginTop: 6, color: "#64748b" }}>{item.spacestation.name}</Text>
+                <Text style={{ marginTop: 6, color: "#64748b" }}>
+                  {item.spacestation.name}
+                </Text>
               ) : null}
             </View>
           </View>

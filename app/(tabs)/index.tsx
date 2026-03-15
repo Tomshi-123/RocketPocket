@@ -12,7 +12,9 @@ export default function HomeTab() {
   }, []);
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#f8fafc", paddingHorizontal: 14 }}>
+    <View
+      style={{ flex: 1, backgroundColor: "#f8fafc", paddingHorizontal: 14 }}
+    >
       <Text
         style={{
           textAlign: "center",
