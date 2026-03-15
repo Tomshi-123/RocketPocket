@@ -12,12 +12,24 @@ export default function HomeTab() {
   }, []);
 
   return (
-    <View style={{ flex: 1 }}>
-      <Text>Upcoming Launches</Text>
+    <View style={{ flex: 1, backgroundColor: "#f8fafc", paddingHorizontal: 14 }}>
+      <Text
+        style={{
+          textAlign: "center",
+          fontSize: 24,
+          fontWeight: "700",
+          marginTop: 16,
+          marginBottom: 14,
+          color: "#0f172a",
+        }}
+      >
+        Upcoming Launches
+      </Text>
       <FlatList
         data={launches}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <ObjectCard item={item} />}
+        contentContainerStyle={{ paddingBottom: 20 }}
       />
     </View>
   );
