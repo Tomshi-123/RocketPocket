@@ -9,6 +9,7 @@ export default function LaunchDetailScreen() {
   const params = useLocalSearchParams<{ id: string | string[] }>();
   const id = Array.isArray(params.id) ? params.id[0] : params.id;
   const [launch, setLaunch] = useState<LaunchDetail | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!id) return;
@@ -18,13 +19,22 @@ export default function LaunchDetailScreen() {
       .then((data) => setLaunch(data as LaunchDetail))
       .catch(() => {
         setLaunch(null);
-      });
+      })
+      .finally(() => setLoading(false));
   }, [id]);
+
+  if (loading) {
+    return (
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        <ActivityIndicator color="#0f766e" size="large" />
+      </View>
+    );
+  }
 
   if (!launch) {
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <ActivityIndicator />
+        <Text>Kunde inte ladda launch.</Text>
       </View>
     );
   }

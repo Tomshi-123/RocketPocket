@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
-import { FlatList, Text, View } from "react-native";
+import { ActivityIndicator, FlatList, Text, View } from "react-native";
 import ObjectCard from "../../components/ObjectCard";
 import { getLaunches } from "../../services/api";
 import { Launch } from "../../types/Launch";
 
 export default function HomeTab() {
   const [launches, setLaunches] = useState<Launch[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getLaunches().then(setLaunches);
+    getLaunches()
+      .then(setLaunches)
+      .finally(() => setLoading(false));
   }, []);
 
   return (
@@ -27,12 +30,20 @@ export default function HomeTab() {
       >
         Upcoming Launches
       </Text>
-      <FlatList
-        data={launches}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <ObjectCard item={item} />}
-        contentContainerStyle={{ paddingBottom: 20 }}
-      />
+      {loading ? (
+        <View
+          style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+        >
+          <ActivityIndicator color="#0f766e" size="large" />
+        </View>
+      ) : (
+        <FlatList
+          data={launches}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => <ObjectCard item={item} />}
+          contentContainerStyle={{ paddingBottom: 20 }}
+        />
+      )}
     </View>
   );
 }
