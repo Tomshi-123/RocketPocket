@@ -4,8 +4,10 @@ export const COLORS = {
   appBackground: "#070d1f",
   headerBackground: "#0a1229",
   surface: "#0f1730",
+  surfaceTranslucent: "rgba(15, 23, 48, 0.85)", // Mjukare yta
   surfaceAlt: "#0b1328",
   border: "#20345f",
+  borderTranslucent: "rgba(32, 52, 95, 0.5)", // Subtilare kant
   textPrimary: "#d9e8ff",
   textSecondary: "#89a1cc",
   textBody: "#c8d9f7",

@@ -9,5 +9,6 @@ export const appTheme = {
     secondary: COLORS.accentNeon,
     background: COLORS.appBackground,
     surface: COLORS.surface,
+    scrim: "rgba(0,0,0,0.5)",
   },
 };

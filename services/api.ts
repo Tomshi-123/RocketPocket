@@ -12,6 +12,11 @@ export async function getLaunches(): Promise<Launch[]> {
     const response = await fetch(url);
 
     // Kontroll
+    if (response.status === 429) {
+      console.warn("Rate limit reached (429). Prova igen om en stund.");
+      return [];
+    }
+
     if (!response.ok) {
       throw new Error(`API svarade med fel: ${response.status}`);
     }
@@ -36,6 +41,11 @@ export async function getExpeditions(): Promise<Expedition[]> {
   try {
     const url = `${API_BASE_V23}expeditions/?limit=10`;
     const response = await fetch(url);
+
+    if (response.status === 429) {
+      console.warn("Rate limit reached (429). Prova igen om en stund.");
+      return [];
+    }
 
     if (!response.ok) {
       throw new Error(`API svarade med fel: ${response.status}`);

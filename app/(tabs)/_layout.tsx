@@ -1,10 +1,16 @@
 import { Tabs } from "expo-router";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { COLORS } from "../../theme/colors";
 import { tabsScreenOptions } from "../../theme/navigation";
 
 export default function TabsLayout() {
   return (
-    <Tabs screenOptions={tabsScreenOptions}>
+    <Tabs
+      screenOptions={{
+        ...tabsScreenOptions,
+        sceneStyle: { backgroundColor: COLORS.appBackground },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
