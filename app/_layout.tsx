@@ -1,20 +1,10 @@
 import { Stack } from "expo-router";
-import { MD3LightTheme, PaperProvider } from "react-native-paper";
-
-const theme = {
-  ...MD3LightTheme,
-  colors: {
-    ...MD3LightTheme.colors,
-    primary: "#0f766e",
-    secondary: "#334155",
-    background: "#f8fafc",
-    surface: "#ffffff",
-  },
-};
+import { PaperProvider } from "react-native-paper";
+import { appTheme } from "../theme/paperTheme";
 
 export default function RootLayout() {
   return (
-    <PaperProvider theme={theme}>
+    <PaperProvider theme={appTheme}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen

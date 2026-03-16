@@ -1,5 +1,6 @@
 import { Link } from "expo-router";
 import { Image, Pressable, Text, View } from "react-native";
+import { COLORS } from "../theme/colors";
 import { Launch } from "../types/Launch";
 
 type ObjectCardProps = {
@@ -15,11 +16,11 @@ export default function ObjectCard({ item }: ObjectCardProps) {
       <Pressable style={{ marginBottom: 14 }}>
         <View
           style={{
-            backgroundColor: "#ffffff",
+            backgroundColor: COLORS.surface,
             borderRadius: 14,
             overflow: "hidden",
             borderWidth: 1,
-            borderColor: "#e2e8f0",
+            borderColor: COLORS.border,
           }}
         >
           {item.image ? (
@@ -33,17 +34,25 @@ export default function ObjectCard({ item }: ObjectCardProps) {
                 height: 120,
                 alignItems: "center",
                 justifyContent: "center",
-                backgroundColor: "#f1f5f9",
+                backgroundColor: COLORS.surfaceAlt,
               }}
             >
-              <Text style={{ color: "#64748b" }}>Ingen bild</Text>
+              <Text style={{ color: COLORS.textSecondary }}>Ingen bild</Text>
             </View>
           )}
           <View style={{ padding: 12 }}>
-            <Text style={{ fontSize: 16, fontWeight: "700", color: "#0f172a" }}>
+            <Text
+              style={{
+                fontSize: 16,
+                fontWeight: "700",
+                color: COLORS.textPrimary,
+              }}
+            >
               {item.name}
             </Text>
-            <Text style={{ marginTop: 4, color: "#475569" }}>{item.net}</Text>
+            <Text style={{ marginTop: 4, color: COLORS.textSecondary }}>
+              {item.net}
+            </Text>
           </View>
         </View>
       </Pressable>

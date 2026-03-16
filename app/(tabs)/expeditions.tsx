@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ActivityIndicator, FlatList, Image, Text, View } from "react-native";
 import { getExpeditions } from "../../services/api";
+import { COLORS } from "../../theme/colors";
 import { Expedition } from "../../types/Expeditions";
 
 function getExpeditionImage(item: Expedition): string | undefined {
@@ -23,25 +24,17 @@ export default function ExpeditionsTab() {
 
   return (
     <View
-      style={{ flex: 1, backgroundColor: "#f8fafc", paddingHorizontal: 14 }}
+      style={{
+        flex: 1,
+        backgroundColor: COLORS.appBackground,
+        paddingHorizontal: 14,
+      }}
     >
-      <Text
-        style={{
-          textAlign: "center",
-          fontSize: 24,
-          fontWeight: "700",
-          marginTop: 16,
-          marginBottom: 14,
-          color: "#0f172a",
-        }}
-      >
-        Expeditions
-      </Text>
       {loading ? (
         <View
           style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
         >
-          <ActivityIndicator color="#0f766e" size="large" />
+          <ActivityIndicator color={COLORS.primaryNeon} size="large" />
         </View>
       ) : (
         <FlatList
@@ -50,10 +43,10 @@ export default function ExpeditionsTab() {
           renderItem={({ item }) => (
             <View
               style={{
-                backgroundColor: "#ffffff",
+                backgroundColor: COLORS.surface,
                 borderRadius: 14,
                 borderWidth: 1,
-                borderColor: "#e2e8f0",
+                borderColor: COLORS.border,
                 marginBottom: 12,
                 overflow: "hidden",
               }}
@@ -64,28 +57,32 @@ export default function ExpeditionsTab() {
                   style={{
                     width: "100%",
                     height: 120,
-                    backgroundColor: "#f1f5f9",
+                    backgroundColor: COLORS.surfaceAlt,
                   }}
                 />
               ) : null}
               <View style={{ padding: 12 }}>
                 <Text
-                  style={{ fontSize: 16, fontWeight: "700", color: "#0f172a" }}
+                  style={{
+                    fontSize: 16,
+                    fontWeight: "700",
+                    color: COLORS.textPrimary,
+                  }}
                 >
                   {item.name}
                 </Text>
-                <Text style={{ marginTop: 4, color: "#475569" }}>
+                <Text style={{ marginTop: 4, color: COLORS.textSecondary }}>
                   {item.start ? item.start.split("T")[0] : "Okänt startdatum"}
                 </Text>
                 {item.spacestation?.name ? (
-                  <Text style={{ marginTop: 6, color: "#64748b" }}>
+                  <Text style={{ marginTop: 6, color: COLORS.accentNeon }}>
                     {item.spacestation.name}
                   </Text>
                 ) : null}
               </View>
             </View>
           )}
-          contentContainerStyle={{ paddingBottom: 20 }}
+          contentContainerStyle={{ paddingTop: 14, paddingBottom: 20 }}
         />
       )}
     </View>

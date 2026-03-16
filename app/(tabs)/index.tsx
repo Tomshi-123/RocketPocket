@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { ActivityIndicator, FlatList, Text, View } from "react-native";
+import { ActivityIndicator, FlatList, View } from "react-native";
 import ObjectCard from "../../components/ObjectCard";
 import { getLaunches } from "../../services/api";
+import { COLORS } from "../../theme/colors";
 import { Launch } from "../../types/Launch";
 
 export default function HomeTab() {
@@ -16,32 +17,24 @@ export default function HomeTab() {
 
   return (
     <View
-      style={{ flex: 1, backgroundColor: "#f8fafc", paddingHorizontal: 14 }}
+      style={{
+        flex: 1,
+        backgroundColor: COLORS.appBackground,
+        paddingHorizontal: 14,
+      }}
     >
-      <Text
-        style={{
-          textAlign: "center",
-          fontSize: 24,
-          fontWeight: "700",
-          marginTop: 16,
-          marginBottom: 14,
-          color: "#0f172a",
-        }}
-      >
-        Upcoming Launches
-      </Text>
       {loading ? (
         <View
           style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
         >
-          <ActivityIndicator color="#0f766e" size="large" />
+          <ActivityIndicator color={COLORS.primaryNeon} size="large" />
         </View>
       ) : (
         <FlatList
           data={launches}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => <ObjectCard item={item} />}
-          contentContainerStyle={{ paddingBottom: 20 }}
+          contentContainerStyle={{ paddingTop: 14, paddingBottom: 20 }}
         />
       )}
     </View>

@@ -1,6 +1,8 @@
 import { Stack, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, Image, ScrollView, Text, View } from "react-native";
+import { COLORS } from "../../theme/colors";
+import { neonHeaderOptions } from "../../theme/navigation";
 import { LaunchDetail } from "../../types/Launch";
 
 const API_BASE = "https://ll.thespacedevs.com/2.2.0/";
@@ -25,16 +27,32 @@ export default function LaunchDetailScreen() {
 
   if (loading) {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <ActivityIndicator color="#0f766e" size="large" />
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: COLORS.appBackground,
+        }}
+      >
+        <ActivityIndicator color={COLORS.primaryNeon} size="large" />
       </View>
     );
   }
 
   if (!launch) {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Text>Kunde inte ladda launch.</Text>
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: COLORS.appBackground,
+        }}
+      >
+        <Text style={{ color: COLORS.textPrimary }}>
+          Kunde inte ladda launch.
+        </Text>
       </View>
     );
   }
@@ -48,27 +66,47 @@ export default function LaunchDetailScreen() {
           headerShown: true,
           headerBackVisible: true,
           title: "Launch Detail",
+          ...neonHeaderOptions,
         }}
       />
-      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 16 }}>
+      <ScrollView
+        style={{ flex: 1, backgroundColor: COLORS.appBackground }}
+        contentContainerStyle={{ padding: 16 }}
+      >
         {image ? (
           <Image
             source={{ uri: image }}
-            style={{ width: "100%", height: 220 }}
+            style={{ width: "100%", height: 220, borderRadius: 12 }}
           />
         ) : null}
-        <Text style={{ fontSize: 28, fontWeight: "700", marginTop: 12 }}>
+        <Text
+          style={{
+            fontSize: 28,
+            fontWeight: "700",
+            marginTop: 12,
+            color: COLORS.textPrimary,
+          }}
+        >
           {launch.name}
         </Text>
-        <Text style={{ marginTop: 6 }}>{launch.net}</Text>
-        <Text style={{ marginTop: 16, fontSize: 18, fontWeight: "600" }}>
+        <Text style={{ marginTop: 6, color: COLORS.textSecondary }}>
+          {launch.net}
+        </Text>
+        <Text
+          style={{
+            marginTop: 16,
+            fontSize: 18,
+            fontWeight: "600",
+            color: COLORS.accentNeon,
+          }}
+        >
           {launch.mission?.name ?? "Mission"}
         </Text>
-        <Text style={{ marginTop: 8 }}>
+        <Text style={{ marginTop: 8, color: COLORS.textBody }}>
           {launch.mission?.description ?? "Ingen beskrivning."}
         </Text>
         {launch.mission?.orbit?.name ? (
-          <Text style={{ marginTop: 12 }}>
+          <Text style={{ marginTop: 12, color: COLORS.primaryNeon }}>
             Orbit: {launch.mission.orbit.name}
           </Text>
         ) : null}
