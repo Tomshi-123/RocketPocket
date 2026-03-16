@@ -1,15 +1,15 @@
 export const COLORS = {
-  primaryNeon: "#28e6ff",
-  accentNeon: "#57f7b8",
-  appBackground: "#070d1f",
-  headerBackground: "#0a1229",
-  surface: "#0f1730",
-  surfaceTranslucent: "rgba(15, 23, 48, 0.85)", // Mjukare yta
-  surfaceAlt: "#0b1328",
-  border: "#20345f",
-  borderTranslucent: "rgba(32, 52, 95, 0.5)", // Subtilare kant
-  textPrimary: "#d9e8ff",
-  textSecondary: "#89a1cc",
-  textBody: "#c8d9f7",
-  tabInactive: "#7f95bd",
+  primaryNeon: "#00f2ff", // Mer elektrisk blå
+  accentNeon: "#00ff9d",  // Mer levande grön
+  appBackground: "#030712", // Djupare svartblå
+  headerBackground: "rgba(3, 7, 18, 0.8)",
+  surface: "#111827",
+  surfaceTranslucent: "rgba(17, 24, 39, 0.7)", 
+  surfaceAlt: "#1f2937",
+  border: "rgba(255, 255, 255, 0.1)", // Mycket subtil vit kant
+  borderNeon: "rgba(0, 242, 255, 0.3)", // Subtil neon-glöd
+  textPrimary: "#f8fafc",
+  textSecondary: "#94a3b8",
+  textBody: "#cbd5e1",
+  tabInactive: "#475569",
 } as const;

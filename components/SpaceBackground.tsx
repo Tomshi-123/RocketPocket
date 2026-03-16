@@ -1,6 +1,8 @@
 import React, { useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Dimensions } from "react-native";
 import { COLORS } from "../theme/colors";
+
+const { width } = Dimensions.get("window");
 
 type Star = {
   id: number;
@@ -8,6 +10,7 @@ type Star = {
   left: `${number}%`;
   opacity: number;
   size: number;
+  color: string;
 };
 
 export default function SpaceBackground({
@@ -16,18 +19,49 @@ export default function SpaceBackground({
   children: React.ReactNode;
 }) {
   const stars = useMemo<Star[]>(() => {
-    return [...Array(40)].map((_, i) => ({
+    return [...Array(50)].map((_, i) => ({
       id: i,
       top: `${Math.random() * 100}%` as `${number}%`,
       left: `${Math.random() * 100}%` as `${number}%`,
-      opacity: Math.random() * 0.7 + 0.3,
-      size: Math.random() * 2.5 + 1,
+      opacity: Math.random() * 0.8 + 0.2,
+      size: Math.random() * 2 + 0.5,
+      color: Math.random() > 0.8 ? COLORS.primaryNeon : "#fff",
     }));
   }, []);
 
   return (
     <View style={styles.container}>
-      <View style={styles.starsContainer}>
+      <View style={styles.nebulasContainer} pointerEvents="none">
+        {/* Vi använder lägre opacity och mjukare färger istället för blur för bättre kompatibilitet */}
+        <View
+          style={[
+            styles.nebula,
+            {
+              top: -width * 0.4,
+              left: -width * 0.2,
+              backgroundColor: COLORS.primaryNeon,
+              width: width * 1.2,
+              height: width * 1.2,
+              opacity: 0.03,
+            },
+          ]}
+        />
+        <View
+          style={[
+            styles.nebula,
+            {
+              bottom: -width * 0.2,
+              right: -width * 0.4,
+              backgroundColor: COLORS.accentNeon,
+              width: width * 1.2,
+              height: width * 1.2,
+              opacity: 0.02,
+            },
+          ]}
+        />
+      </View>
+
+      <View style={styles.starsContainer} pointerEvents="none">
         {stars.map((star) => (
           <View
             key={star.id}
@@ -40,12 +74,14 @@ export default function SpaceBackground({
                 width: star.size,
                 height: star.size,
                 borderRadius: star.size / 2,
+                backgroundColor: star.color,
               },
             ]}
           />
         ))}
       </View>
-      <View style={styles.content}>{children}</View>
+
+      {children}
     </View>
   );
 }
@@ -55,15 +91,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.appBackground,
   },
+  nebulasContainer: {
+    ...StyleSheet.absoluteFillObject,
+    overflow: "hidden",
+  },
+  nebula: {
+    position: "absolute",
+    borderRadius: 999,
+  },
   starsContainer: {
     ...StyleSheet.absoluteFillObject,
-    pointerEvents: "none",
-  },
-  content: {
-    flex: 1,
+    zIndex: -1,
   },
   star: {
     position: "absolute",
-    backgroundColor: "#fff",
   },
 });
