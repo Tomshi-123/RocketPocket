@@ -1,24 +1,15 @@
-import { useEffect, useState } from "react";
 import { getExpeditions } from "../services/api";
 import { Expedition } from "../types/Expeditions";
+import { useAsyncResource } from "./useAsyncResource";
 
 export function useExpeditions() {
-  const [expeditions, setExpeditions] = useState<Expedition[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { data, loading, error, refresh } = useAsyncResource<Expedition[]>(
+    getExpeditions,
+    {
+      initialData: [],
+      fallbackErrorMessage: "Kunde inte hämta expeditioner.",
+    },
+  );
 
-  useEffect(() => {
-    getExpeditions()
-      .then(setExpeditions)
-      .catch((caughtError: unknown) => {
-        const message =
-          caughtError instanceof Error
-            ? caughtError.message
-            : "Kunde inte hämta expeditioner.";
-        setError(message);
-      })
-      .finally(() => setLoading(false));
-  }, []);
-
-  return { expeditions, loading, error };
+  return { expeditions: data, loading, error, refresh };
 }
