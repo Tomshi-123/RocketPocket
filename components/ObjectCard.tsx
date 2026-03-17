@@ -1,15 +1,7 @@
 import { Link } from "expo-router";
 import { Image, Pressable, Text, View, StyleSheet } from "react-native";
 import { COLORS } from "../theme/colors";
-
-type GenericItem = {
-  id: string | number;
-  name: string;
-  image?: string;
-  subtitle: string;
-  icon?: string;
-  path?: string;
-};
+import { GenericItem } from "../types/ObjectCard";
 
 export default function ObjectCard({ item }: { item: GenericItem }) {
   const card = (

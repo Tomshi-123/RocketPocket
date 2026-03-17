@@ -1,17 +1,9 @@
 import React, { useMemo } from "react";
 import { StyleSheet, View, Dimensions } from "react-native";
 import { COLORS } from "../theme/colors";
+import { Star } from "../types/SpaceBackground";
 
 const { width } = Dimensions.get("window");
-
-type Star = {
-  id: number;
-  top: `${number}%`;
-  left: `${number}%`;
-  opacity: number;
-  size: number;
-  color: string;
-};
 
 export default function SpaceBackground({
   children,
@@ -32,7 +24,6 @@ export default function SpaceBackground({
   return (
     <View style={styles.container}>
       <View style={styles.nebulasContainer} pointerEvents="none">
-        {/* Vi använder lägre opacity och mjukare färger istället för blur för bättre kompatibilitet */}
         <View
           style={[
             styles.nebula,
