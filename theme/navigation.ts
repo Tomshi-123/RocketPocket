@@ -33,7 +33,23 @@ export const tabsScreenOptions = {
 };
 
 export const neonHeaderOptions = {
-  headerStyle: { backgroundColor: COLORS.headerBackground },
+  headerStyle: {
+    backgroundColor: COLORS.headerBackground,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.accentNeon,
+    shadowColor: COLORS.accentNeon,
+    shadowOpacity: 0.35,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 10,
+  },
   headerTintColor: COLORS.textPrimary,
-  headerTitleStyle: { color: COLORS.textPrimary, fontWeight: "700" as const },
+  headerTitleStyle: {
+    color: COLORS.textPrimary,
+    fontWeight: "700" as const,
+    textShadowColor: COLORS.primaryNeon,
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 8,
+    fontSize: 18,
+  },
 };

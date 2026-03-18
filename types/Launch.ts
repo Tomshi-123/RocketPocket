@@ -3,6 +3,7 @@ export type Launch = {
   name: string;
   net: string;
   image?: string | null;
+  company?: string | null;
 };
 
 export type LaunchDetail = {

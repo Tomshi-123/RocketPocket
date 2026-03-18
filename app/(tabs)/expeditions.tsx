@@ -1,6 +1,8 @@
 import { useCallback } from "react";
 import { ActivityIndicator, FlatList, Text, View } from "react-native";
+import Filt from "../../components/Filt";
 import ObjectCard from "../../components/ObjectCard";
+import { useFilt } from "../../hooks/useFilt";
 import { useExpeditions } from "../../hooks/useExpeditions";
 import SpaceBackground from "../../components/SpaceBackground";
 import { COLORS } from "../../theme/colors";
@@ -16,6 +18,12 @@ function getExpeditionImage(item: Expedition): string | undefined {
 
 export default function ExpeditionsTab() {
   const { expeditions, loading, error } = useExpeditions();
+  const { selectedCompany, setSelectedCompany, companyOptions, filteredItems } =
+    useFilt({
+      items: expeditions,
+      getCompany: (expedition) => expedition.company,
+      getDate: (expedition) => expedition.start,
+    });
 
   const renderExpedition = useCallback(
     ({ item }: { item: Expedition }) => (
@@ -24,7 +32,7 @@ export default function ExpeditionsTab() {
           id: item.id,
           name: item.name,
           image: getExpeditionImage(item),
-          subtitle: item.start ? item.start.split("T")[0] : "Okänt datum",
+          subtitle: item.start ? item.start.split("T")[0] : "Unknown date",
           icon: "📅",
         }}
       />
@@ -50,12 +58,27 @@ export default function ExpeditionsTab() {
             </Text>
           </View>
         ) : (
-          <FlatList
-            data={expeditions}
-            keyExtractor={(item) => String(item.id)}
-            renderItem={renderExpedition}
-            contentContainerStyle={{ paddingTop: 14, paddingBottom: 20 }}
-          />
+          <>
+            <Filt
+              value={selectedCompany}
+              options={companyOptions}
+              onChange={setSelectedCompany}
+            />
+
+            <FlatList
+              data={filteredItems}
+              keyExtractor={(item) => String(item.id)}
+              renderItem={renderExpedition}
+              contentContainerStyle={{ paddingTop: 8, paddingBottom: 20 }}
+              ListEmptyComponent={
+                <Text
+                  style={{ color: COLORS.textSecondary, textAlign: "center" }}
+                >
+                  No expeditions match this company.
+                </Text>
+              }
+            />
+          </>
         )}
       </View>
     </SpaceBackground>

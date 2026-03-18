@@ -69,6 +69,7 @@ export default function LaunchDetailScreen() {
           headerShown: true,
           headerBackVisible: true,
           title: "Launch Detail",
+          headerTransparent: false,
           ...neonHeaderOptions,
         }}
       />
@@ -86,6 +87,9 @@ export default function LaunchDetailScreen() {
               fontWeight: "700",
               marginTop: 12,
               color: COLORS.textPrimary,
+              textShadowColor: COLORS.primaryNeon,
+              textShadowOffset: { width: 0, height: 0 },
+              textShadowRadius: 12,
             }}
           >
             {launch.name}
@@ -99,6 +103,9 @@ export default function LaunchDetailScreen() {
               fontSize: 18,
               fontWeight: "600",
               color: COLORS.accentNeon,
+              textShadowColor: COLORS.accentNeon,
+              textShadowOffset: { width: 0, height: 0 },
+              textShadowRadius: 8,
             }}
           >
             {launch.mission?.name ?? "Mission"}
@@ -107,7 +114,15 @@ export default function LaunchDetailScreen() {
             {launch.mission?.description ?? "Ingen beskrivning."}
           </Text>
           {launch.mission?.orbit?.name ? (
-            <Text style={{ marginTop: 12, color: COLORS.primaryNeon }}>
+            <Text
+              style={{
+                marginTop: 12,
+                color: COLORS.primaryNeon,
+                textShadowColor: COLORS.primaryNeon,
+                textShadowOffset: { width: 0, height: 0 },
+                textShadowRadius: 6,
+              }}
+            >
               Orbit: {launch.mission.orbit.name}
             </Text>
           ) : null}

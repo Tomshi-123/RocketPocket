@@ -2,6 +2,7 @@ export type Expedition = {
   id: number;
   name: string;
   start: string | null;
+  company?: string | null;
   spacestation?: {
     name: string;
     image?: {
@@ -10,5 +11,8 @@ export type Expedition = {
   } | null;
   mission_patches?: {
     image_url?: string | null;
+    agency?: {
+      name?: string | null;
+    } | null;
   }[];
 };
