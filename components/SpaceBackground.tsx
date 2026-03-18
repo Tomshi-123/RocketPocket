@@ -1,7 +1,15 @@
 import React, { useMemo } from "react";
 import { StyleSheet, View, Dimensions } from "react-native";
 import { COLORS } from "../theme/colors";
-import { Star } from "../types/SpaceBackground";
+
+type Star = {
+  id: number;
+  top: `${number}%`;
+  left: `${number}%`;
+  opacity: number;
+  size: number;
+  color: string;
+};
 
 const { width } = Dimensions.get("window");
 
