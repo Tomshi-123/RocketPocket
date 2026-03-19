@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import {
   ActivityIndicator,
   Image,
+  Platform,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -92,15 +93,7 @@ export default function LaunchDetailScreen() {
           />
         ) : null}
         <Text
-          style={{
-            fontSize: 28,
-            fontWeight: "700",
-            marginTop: 12,
-            color: COLORS.textPrimary,
-            textShadowColor: COLORS.primaryNeon,
-            textShadowOffset: { width: 0, height: 0 },
-            textShadowRadius: 12,
-          }}
+          style={styles.title}
         >
           {launch.name}
         </Text>
@@ -126,15 +119,7 @@ export default function LaunchDetailScreen() {
           </Text>
         </Pressable>
         <Text
-          style={{
-            marginTop: 16,
-            fontSize: 18,
-            fontWeight: "600",
-            color: COLORS.accentNeon,
-            textShadowColor: COLORS.accentNeon,
-            textShadowOffset: { width: 0, height: 0 },
-            textShadowRadius: 8,
-          }}
+          style={styles.missionTitle}
         >
           {launch.mission?.name ?? "Mission"}
         </Text>
@@ -173,11 +158,44 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: "700",
   },
+  title: {
+    fontSize: 28,
+    fontWeight: "700",
+    marginTop: 12,
+    color: COLORS.textPrimary,
+    ...Platform.select({
+      web: { textShadow: "0 0 12px rgba(0, 242, 255, 0.9)" },
+      default: {
+        textShadowColor: COLORS.primaryNeon,
+        textShadowOffset: { width: 0, height: 0 },
+        textShadowRadius: 12,
+      },
+    }),
+  },
+  missionTitle: {
+    marginTop: 16,
+    fontSize: 18,
+    fontWeight: "600",
+    color: COLORS.accentNeon,
+    ...Platform.select({
+      web: { textShadow: "0 0 8px rgba(0, 255, 157, 0.9)" },
+      default: {
+        textShadowColor: COLORS.accentNeon,
+        textShadowOffset: { width: 0, height: 0 },
+        textShadowRadius: 8,
+      },
+    }),
+  },
   orbit: {
     marginTop: 12,
     color: COLORS.primaryNeon,
-    textShadowColor: COLORS.primaryNeon,
-    textShadowOffset: { width: 0, height: 0 },
-    textShadowRadius: 6,
+    ...Platform.select({
+      web: { textShadow: "0 0 6px rgba(0, 242, 255, 0.9)" },
+      default: {
+        textShadowColor: COLORS.primaryNeon,
+        textShadowOffset: { width: 0, height: 0 },
+        textShadowRadius: 6,
+      },
+    }),
   },
 });

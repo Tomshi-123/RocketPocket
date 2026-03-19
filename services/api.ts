@@ -1,3 +1,13 @@
+export async function getExpeditionDetail(id: string): Promise<Expedition> {
+  const url = `${API_BASE_V23}expeditions/${id}/`;
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(`API svarade med fel: ${response.status}`);
+  }
+
+  return (await response.json()) as Expedition;
+}
 import { Launch, LaunchDetail } from "../types/Launch";
 import { Expedition } from "../types/Expeditions";
 

@@ -1,5 +1,5 @@
 import { Link } from "expo-router";
-import { Image, Pressable, Text, View, StyleSheet } from "react-native";
+import { Image, Platform, Pressable, Text, View, StyleSheet } from "react-native";
 import { COLORS } from "../theme/colors";
 
 type GenericItem = {
@@ -64,11 +64,16 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     borderWidth: 1,
     borderColor: COLORS.border,
-    shadowColor: COLORS.primaryNeon,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
-    elevation: 5,
+    ...Platform.select({
+      web: { boxShadow: "0 2px 10px rgba(0, 242, 255, 0.1)" },
+      default: {
+        shadowColor: COLORS.primaryNeon,
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 10,
+        elevation: 5,
+      },
+    }),
   },
   imageContainer: {
     position: "relative",
