@@ -72,18 +72,16 @@ export default function ExpeditionDetailScreen() {
         ) : null}
         <Text style={styles.title}>{expedition.name}</Text>
         <Text style={{ marginTop: 6, color: COLORS.textSecondary }}>
-          {expedition.start ? expedition.start.split("T")[0] : "Unknown date"}
+          {expedition.start ? expedition.start.split("T")[0] : "Okänd datum"}
         </Text>
-        {expedition.company ? (
-          <Text style={styles.company}>Company: {expedition.company}</Text>
-        ) : null}
+        <Text style={styles.missionTitle}>Expedition</Text>
+        <Text style={{ marginTop: 8, color: COLORS.textBody }}>
+          Ingen beskrivning.
+        </Text>
         {expedition.spacestation?.name ? (
           <Text style={styles.spacestation}>
-            Spacestation: {expedition.spacestation.name}
+            Rymdstation: {expedition.spacestation.name}
           </Text>
-        ) : null}
-        {expedition.mission_patches?.length ? (
-          <Text style={styles.patchTitle}>Mission Patch</Text>
         ) : null}
         {expedition.mission_patches?.[0]?.image_url ? (
           <Image
@@ -116,6 +114,21 @@ const styles = StyleSheet.create({
       },
     }),
   },
+  missionTitle: {
+    marginTop: 16,
+    fontSize: 18,
+    fontWeight: "600",
+    color: COLORS.accentNeon,
+    ...Platform.select({
+      web: { textShadow: "0 0 8px rgba(0, 255, 157, 0.9)" },
+      default: {
+        textShadowColor: COLORS.accentNeon,
+        textShadowOffset: { width: 0, height: 0 },
+        textShadowRadius: 8,
+      },
+    }),
+  },
+  // ...existing code...
   company: {
     marginTop: 12,
     color: COLORS.primaryNeon,

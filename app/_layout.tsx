@@ -17,6 +17,10 @@ export default function RootLayout() {
           name="launchdetail/[id]"
           options={{ title: "Launch Detail", ...neonHeaderOptions }}
         />
+        <Stack.Screen
+          name="expeditiondetail/[id]"
+          options={{ title: "Expedition Detail", ...neonHeaderOptions }}
+        />
       </Stack>
     </PaperProvider>
   );
