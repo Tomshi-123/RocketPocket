@@ -2,11 +2,10 @@ import { Stack, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, Image, ScrollView, Text, View } from "react-native";
 import SpaceBackground from "../../components/SpaceBackground";
+import { getLaunchDetail } from "../../services/api";
 import { COLORS } from "../../theme/colors";
 import { neonHeaderOptions } from "../../theme/navigation";
 import { LaunchDetail } from "../../types/Launch";
-
-const API_BASE = "https://ll.thespacedevs.com/2.2.0/";
 
 export default function LaunchDetailScreen() {
   const params = useLocalSearchParams<{ id: string | string[] }>();
@@ -15,11 +14,15 @@ export default function LaunchDetailScreen() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!id) return;
+    if (!id) {
+      setLaunch(null);
+      setLoading(false);
+      return;
+    }
 
-    fetch(`${API_BASE}launch/${id}/`)
-      .then((response) => response.json())
-      .then((data) => setLaunch(data as LaunchDetail))
+    setLoading(true);
+    getLaunchDetail(id)
+      .then((data) => setLaunch(data))
       .catch(() => {
         setLaunch(null);
       })
