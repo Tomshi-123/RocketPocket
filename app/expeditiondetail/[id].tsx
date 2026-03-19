@@ -57,7 +57,9 @@ export default function ExpeditionDetailScreen() {
     );
   }
 
-  const image = expedition.mission_patches?.[0]?.image_url ?? expedition.spacestation?.image?.thumbnail_url;
+  const image =
+    expedition.mission_patches?.[0]?.image_url ??
+    expedition.spacestation?.image?.thumbnail_url;
 
   return (
     <SpaceBackground>
@@ -76,7 +78,9 @@ export default function ExpeditionDetailScreen() {
           <Text style={styles.company}>Company: {expedition.company}</Text>
         ) : null}
         {expedition.spacestation?.name ? (
-          <Text style={styles.spacestation}>Spacestation: {expedition.spacestation.name}</Text>
+          <Text style={styles.spacestation}>
+            Spacestation: {expedition.spacestation.name}
+          </Text>
         ) : null}
         {expedition.mission_patches?.length ? (
           <Text style={styles.patchTitle}>Mission Patch</Text>

@@ -1,6 +1,5 @@
 # RocketPocket
 
-
 RocketPocket är en modern Expo + React Native-app för att utforska kommande rymduppdrag och expeditioner.
 
 Appen hämtar live-data från The Space Devs Launch Library API och visar den i en enkel, snabb och snygg tvåfliksupplevelse:
