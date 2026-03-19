@@ -34,6 +34,7 @@ export default function ExpeditionsTab() {
           image: getExpeditionImage(item),
           subtitle: item.start ? item.start.split("T")[0] : "Unknown date",
           icon: "📅",
+          path: "/expeditiondetail/[id]",
         }}
       />
     ),

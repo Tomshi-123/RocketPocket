@@ -1,25 +1,30 @@
 # RocketPocket
 
-A clean Expo + React Native app for exploring upcoming space launches and expeditions.
 
-RocketPocket fetches live data from The Space Devs Launch Library API and presents it in a simple two-tab experience:
+RocketPocket är en modern Expo + React Native-app för att utforska kommande rymduppdrag och expeditioner.
 
-- Launches: Upcoming launches with quick details
-- Expeditions: Current and planned expeditions
+Appen hämtar live-data från The Space Devs Launch Library API och visar den i en enkel, snabb och snygg tvåfliksupplevelse:
+
+- **Launches:** Kommande uppskjutningar med detaljer och nedräkning
+- **Expeditions:** Aktuella och planerade expeditioner
+
+Klicka på ett kort för att se en detaljerad vy med all info om launch eller expedition.
 
 ## Preview
 
-- Platform support: iOS, Android, Web (via Expo)
-- Navigation: Expo Router with tabs + detail route
-- Visual style: custom neon-inspired space theme
+- Plattformar: iOS, Android, Web (Expo)
+- Navigation: Expo Router med tabs och detaljvyer
+- UI: Neon-inspirerat space-tema
 
 ## Features
 
-- Browse upcoming launches in a fast scrolling list
-- Open launch details with mission description and orbit info
-- Browse expeditions with patch/station fallback imagery
-- Loading and error states for all remote data views
-- Shared card UI and themed background components
+- Bläddra bland kommande launches och expeditioner
+- Klicka på ett kort för att se detaljerad vy (launch eller expedition)
+- Filtrera på företag/organisation i båda listor
+- Lägg till launches som favoriter (med persistent lagring)
+- Nedräkning till launch i detaljvy
+- Snyggt, responsivt och enhetligt UI
+- Laddnings- och felhantering för all data
 
 ## Tech Stack
 
@@ -39,14 +44,19 @@ app/
     _layout.tsx            # Tab layout
   launchdetail/
     [id].tsx               # Launch detail screen
+  expeditiondetail/
+    [id].tsx               # Expedition detail screen
 components/
-  ObjectCard.tsx
-  SpaceBackground.tsx
+  ObjectCard.tsx           # Reusable card for all items
+  SpaceBackground.tsx      # Animated space background
 hooks/
   useLaunches.ts
   useExpeditions.ts
+  useFilt.ts               # Filtering logic
+  useAsyncResource.ts      # Generic async hook
+  useFollowedLaunches.ts   # Favorites logic
 services/
-  api.ts                   # Launch Library API calls
+  api.ts                   # API calls
 theme/
   colors.ts
   navigation.ts
@@ -86,25 +96,25 @@ Then open:
 
 ## Data Source
 
-This app consumes:
+Appen hämtar data från:
 
 - Launches: `https://ll.thespacedevs.com/2.2.0/launch/upcoming/`
 - Expeditions: `https://ll.thespacedevs.com/2.3.0/expeditions/`
 
-The app handles HTTP errors, including API rate limiting (429), in list views.
+Alla listor hanterar laddning, fel och API rate limiting.
 
 ## Notes
 
-- No environment variables are required for local development.
-- Internet access is required to load launch and expedition data.
+- Ingen konfiguration krävs för lokal utveckling
+- Internet krävs för att ladda data
 
 ## Roadmap Ideas
 
-- Search and filter launches
+- Sökning i listor
 - Pull to refresh
-- Favorites/bookmarking
-- Offline caching
-- Better detail error handling and retry
+- Offline-stöd
+- Fler filter
+- Ännu bättre felhantering
 
 ## License
 
