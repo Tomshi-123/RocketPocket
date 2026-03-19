@@ -1,5 +1,12 @@
 import { Link } from "expo-router";
-import { Image, Platform, Pressable, Text, View, StyleSheet } from "react-native";
+import {
+  Image,
+  Platform,
+  Pressable,
+  Text,
+  View,
+  StyleSheet,
+} from "react-native";
 import { COLORS } from "../theme/colors";
 
 type GenericItem = {

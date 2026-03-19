@@ -92,11 +92,7 @@ export default function LaunchDetailScreen() {
             style={{ width: "100%", height: 220, borderRadius: 12 }}
           />
         ) : null}
-        <Text
-          style={styles.title}
-        >
-          {launch.name}
-        </Text>
+        <Text style={styles.title}>{launch.name}</Text>
         <Text style={{ marginTop: 6, color: COLORS.textSecondary }}>
           {launch.net}
         </Text>
@@ -118,9 +114,7 @@ export default function LaunchDetailScreen() {
                 : "Follow launch"}
           </Text>
         </Pressable>
-        <Text
-          style={styles.missionTitle}
-        >
+        <Text style={styles.missionTitle}>
           {launch.mission?.name ?? "Mission"}
         </Text>
         <Text style={{ marginTop: 8, color: COLORS.textBody }}>

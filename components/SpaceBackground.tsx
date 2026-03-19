@@ -31,7 +31,7 @@ export default function SpaceBackground({
 
   return (
     <View style={styles.container}>
-      <View style={[styles.nebulasContainer, { pointerEvents: "none" }]}> 
+      <View style={[styles.nebulasContainer, { pointerEvents: "none" }]}>
         <View
           style={[
             styles.nebula,
@@ -60,7 +60,7 @@ export default function SpaceBackground({
         />
       </View>
 
-      <View style={[styles.starsContainer, { pointerEvents: "none" }]}> 
+      <View style={[styles.starsContainer, { pointerEvents: "none" }]}>
         {stars.map((star) => (
           <View
             key={star.id}
