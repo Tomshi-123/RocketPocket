@@ -2,6 +2,7 @@ import { Stack } from "expo-router";
 import { PaperProvider } from "react-native-paper";
 import { appTheme } from "../theme/paperTheme";
 import { COLORS } from "../theme/colors";
+import { neonHeaderOptions } from "../theme/navigation";
 
 export default function RootLayout() {
   return (
@@ -14,7 +15,7 @@ export default function RootLayout() {
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen
           name="launchdetail/[id]"
-          options={{ title: "Launch Detail" }}
+          options={{ title: "Launch Detail", ...neonHeaderOptions }}
         />
       </Stack>
     </PaperProvider>

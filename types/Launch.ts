@@ -6,6 +6,13 @@ export type Launch = {
   company?: string | null;
 };
 
+export type FollowedLaunch = {
+  id: string;
+  name: string;
+  net: string;
+  image?: string | null;
+};
+
 export type LaunchDetail = {
   id: string;
   name: string;

@@ -34,7 +34,7 @@ export const tabsScreenOptions = {
 
 export const neonHeaderOptions = {
   headerStyle: {
-    backgroundColor: COLORS.headerBackground,
+    backgroundColor: COLORS.appBackground,
     borderBottomWidth: 1,
     borderBottomColor: COLORS.accentNeon,
     shadowColor: COLORS.accentNeon,

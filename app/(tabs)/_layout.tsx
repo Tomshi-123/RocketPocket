@@ -37,6 +37,19 @@ export default function TabsLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="favorites"
+        options={{
+          title: "Following",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name="heart-outline"
+              size={size}
+              color={color}
+            />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
