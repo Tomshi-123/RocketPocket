@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
       },
     }),
   },
-  // ...existing code...
+
   company: {
     marginTop: 12,
     color: COLORS.primaryNeon,
